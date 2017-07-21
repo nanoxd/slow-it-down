@@ -1,0 +1,16 @@
+box: node
+
+build:
+  steps:
+    - script:
+      name: Setup Yarn Caching
+      code: export YARN_CACHE=$WERCKER_CACHE_DIR/yarn
+    - script:
+      name: Yarn Install
+      code: HOME=$YARN_CACHE yarn
+    - script:
+      name: Test
+      code: yarn test -- --colors
+    - script:
+      name: Build
+      code: yarn build

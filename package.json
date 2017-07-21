@@ -1,0 +1,43 @@
+{
+  "name": "slow-it-down",
+  "version": "0.0.1",
+  "description": "A rate limiter for express using a token bucket",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "precommit": "lint-staged",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Fernando Paredes <nano@fdp.io>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^20.0.4",
+    "@types/node": "^8.0.14",
+    "husky": "^0.14.3",
+    "jest": "^20.0.4",
+    "lint-staged": "^4.0.2",
+    "prettier": "^1.5.3",
+    "ts-jest": "^20.0.7",
+    "typescript": "^2.4.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --no-semi --single-quote --trailing-comma es5 --write",
+      "git add"
+    ]
+  }
+}

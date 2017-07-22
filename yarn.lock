@@ -37,6 +37,10 @@
   version "20.0.4"
   resolved "https://registry.npmjs.org/@types/jest/-/jest-20.0.4.tgz#91e2c76fbe90b3a719b5d689958f0495f005beb9"
 
+"@types/lru-cache@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@types/lru-cache/-/lru-cache-4.0.0.tgz#e4f33244d62ad01f06d8c533f6b216ec42012175"
+
 "@types/node@^8.0.14":
   version "8.0.14"
   resolved "https://registry.npmjs.org/@types/node/-/node-8.0.14.tgz#4a19dc6bb61d16c01cbadc7b30ac23518fff176b"
@@ -1582,7 +1586,7 @@ loose-envify@^1.0.0:
   dependencies:
     js-tokens "^3.0.0"
 
-lru-cache@^4.0.1:
+lru-cache@^4.0.1, lru-cache@^4.1.1:
   version "4.1.1"
   resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-4.1.1.tgz#622e32e82488b49279114a4f9ecf45e7cd6bba55"
   dependencies:

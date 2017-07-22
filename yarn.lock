@@ -41,6 +41,10 @@
   version "4.0.0"
   resolved "https://registry.npmjs.org/@types/lru-cache/-/lru-cache-4.0.0.tgz#e4f33244d62ad01f06d8c533f6b216ec42012175"
 
+"@types/netmask@^1.0.29":
+  version "1.0.29"
+  resolved "https://registry.npmjs.org/@types/netmask/-/netmask-1.0.29.tgz#f295c5e32da93a37e9942007d5d17f6f3c854090"
+
 "@types/node@^8.0.14":
   version "8.0.14"
   resolved "https://registry.npmjs.org/@types/node/-/node-8.0.14.tgz#4a19dc6bb61d16c01cbadc7b30ac23518fff176b"
@@ -1672,6 +1676,10 @@ ms@2.0.0:
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
+
+netmask@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
 
 node-int64@^0.4.0:
   version "0.4.0"

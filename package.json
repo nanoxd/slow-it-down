@@ -16,6 +16,7 @@
   "devDependencies": {
     "@types/jest": "^20.0.4",
     "@types/lru-cache": "^4.0.0",
+    "@types/netmask": "^1.0.29",
     "@types/node": "^8.0.14",
     "husky": "^0.14.3",
     "jest": "^20.0.4",
@@ -42,6 +43,7 @@
     ]
   },
   "dependencies": {
-    "lru-cache": "^4.1.1"
+    "lru-cache": "^4.1.1",
+    "netmask": "^1.0.6"
   }
 }

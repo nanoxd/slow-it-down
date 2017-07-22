@@ -1,10 +1,14 @@
 import * as LRU from 'lru-cache'
+import { Maybe } from './index'
 
 export interface TokenTableOptions {
   size: number
 }
 
-export type Maybe<T> = T | undefined
+export interface TokenStorageEngine<T> {
+  get(key: any): Maybe<T>
+  put(key: any, value: T): void
+}
 
 /**
  * A cache to hold onto tokens
@@ -12,7 +16,7 @@ export type Maybe<T> = T | undefined
  * @class TokenTable
  * @template Value 
  */
-class TokenTable<Value> {
+class TokenTable<Value> implements TokenStorageEngine<Value> {
   private table: LRU.Cache<Value>
 
   constructor(options: TokenTableOptions = { size: 10000 }) {

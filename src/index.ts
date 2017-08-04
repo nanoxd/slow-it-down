@@ -1,10 +1,12 @@
 import { format } from 'util'
 import { Netmask } from 'netmask'
 import { xor } from './xor'
+import * as express from 'express'
 
 import { TokenBucket } from './tokenBucket'
 import TokenTable, { TokenStorageEngine } from './tokenTable'
 
+declare const Set: any
 export type Maybe<T> = T | undefined
 
 export const hasValues = (
@@ -61,16 +63,26 @@ export const throttle = (options: ThrottleOptions): any => {
   const size = options.maxKeys || 10000
   const table = options.tokensTable || new TokenTable({ size })
 
-  const rateLimit = (req: any, res: any, next: any): any => {
+  const rateLimit = (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ): any => {
     let { burst, rate } = options
     let attr: Maybe<string>
 
     if (options.ip) {
       attr = req.connection.remoteAddress
     } else if (options.xff) {
-      attr = req.headers['x-forwarded-for']
+      const xffHeader = req.headers['x-forwarded-for']
+
+      if (xffHeader instanceof Array) {
+        attr = xffHeader[0]
+      } else {
+        attr = xffHeader
+      }
     } else if (options.user) {
-      attr = req.user
+      attr = (req as any).user
     }
 
     // Check if request matches
@@ -121,8 +133,22 @@ export const throttle = (options: ThrottleOptions): any => {
         capacity: burst,
         fillRate: rate,
       })
+
+      table.put(attr, bucket)
     }
+
+    if (!bucket.consume(1)) {
+      const msg = format(message, rate)
+      const err: any = new Error(msg)
+      err.status = 429
+
+      return next(err)
+    }
+
+    return next()
   }
+
+  return rateLimit
 }
 
 export default throttle

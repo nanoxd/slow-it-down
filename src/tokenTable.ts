@@ -1,4 +1,4 @@
-import * as LRU from 'lru-cache'
+import LRU from 'lru-cache'
 import { Maybe } from './index'
 
 export interface TokenTableOptions {
@@ -11,7 +11,7 @@ export interface TokenStorageEngine<T> {
 }
 
 /**
- * A cache to hold onto tokens
+ * A cache for tokens
  * 
  * @class TokenTable
  * @template Value 

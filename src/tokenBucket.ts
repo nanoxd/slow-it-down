@@ -1,5 +1,15 @@
 export interface TokenBucketOptions {
+  /**
+   * Maximum number of tokens to hold in the bucket
+   * 
+   * @type {number}
+   */
   capacity: number
+  /**
+   * Number of tokens to fill the bucket over the course of an interval
+   * 
+   * @type {number}
+   */
   fillRate: number
 }
 
@@ -26,8 +36,8 @@ export class TokenBucket {
  *
  * If there is no capacity, the tokens are not pulled from the bucket.
  *
- * @param {Number} tokens the number of tokens to pull out.
- * @return {Boolean} true if capacity, false otherwise.
+ * @param {Number} tokens the number of tokens to remove.
+ * @return {Boolean} True if there were enough tokens, otherwise false.
  */
   consume(tokens: number): boolean {
     if (tokens <= this.fill()) {

@@ -9,8 +9,8 @@ const slowDown = require('slow-it-down')
 const app = express()
 
 app.use(slowDown({
-  burst: 25, // Up to 25 concurrent requests
-  rate: 1, // 25 requests / second
+  burst: 25, // Maxiumum number of concurrent requests
+  rate: 1, // 1 requests/second
 }))
 ```
 

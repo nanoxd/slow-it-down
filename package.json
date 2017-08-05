@@ -1,6 +1,6 @@
 {
   "name": "slow-it-down",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A rate limiter for express using a token bucket",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",

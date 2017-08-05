@@ -37,7 +37,7 @@ export const handleNetmasks = (overrides: any): any => {
   return overrides
 }
 
-export interface ThrottleOptions {
+export interface Configuration {
   burst: number
   rate: number
   ip?: boolean
@@ -49,31 +49,44 @@ export interface ThrottleOptions {
   message?: string
 }
 
-export const throttle = (options: ThrottleOptions): any => {
-  if (!hasValues(options.ip, options.xff, options.user)) {
+/**
+ * Express middleware that requires an Options object containing
+ * at least a burst and rate property.
+ * 
+ * @example 
+ * throttle({
+ *   burst: 10,
+ *   rate: 1,
+ * })
+ * 
+ * @param {Configuration} options 
+ * @returns {*} 
+ */
+export const slowDown = (config: Configuration): any => {
+  if (!hasValues(config.ip, config.xff, config.user)) {
     throw new Error('(ip ^ username ^ xff)')
   }
 
-  if (options.overrides) {
-    options.overrides = handleNetmasks(options.overrides)
+  if (config.overrides) {
+    config.overrides = handleNetmasks(config.overrides)
   }
 
   const message =
-    options.message || 'You have exceeded your request rate of %s r/s.'
-  const size = options.maxKeys || 10000
-  const table = options.tokensTable || new TokenTable({ size })
+    config.message || 'You have exceeded your request rate of %s r/s.'
+  const size = config.maxKeys || 10000
+  const table = config.tokensTable || new TokenTable({ size })
 
   const rateLimit = (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction
   ): any => {
-    let { burst, rate } = options
+    let { burst, rate } = config
     let attr: Maybe<string>
 
-    if (options.ip) {
+    if (config.ip) {
       attr = req.connection.remoteAddress
-    } else if (options.xff) {
+    } else if (config.xff) {
       const xffHeader = req.headers['x-forwarded-for']
 
       if (xffHeader instanceof Array) {
@@ -81,7 +94,7 @@ export const throttle = (options: ThrottleOptions): any => {
       } else {
         attr = xffHeader
       }
-    } else if (options.user) {
+    } else if (config.user) {
       attr = (req as any).user
     }
 
@@ -93,8 +106,8 @@ export const throttle = (options: ThrottleOptions): any => {
     attr = attr.split(',')[0]
 
     // Check overrides
-    if (options.overrides) {
-      let override = options.overrides[attr]
+    if (config.overrides) {
+      let override = config.overrides[attr]
 
       if (
         override &&
@@ -104,8 +117,8 @@ export const throttle = (options: ThrottleOptions): any => {
         burst = override.burst
         rate = override.rate
       } else {
-        for (let key in options.overrides) {
-          override = options.overrides[key]
+        for (let key in config.overrides) {
+          override = config.overrides[key]
           let contained = false
 
           try {
@@ -151,4 +164,4 @@ export const throttle = (options: ThrottleOptions): any => {
   return rateLimit
 }
 
-export default throttle
+export default slowDown

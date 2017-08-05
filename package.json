@@ -4,7 +4,7 @@
   "description": "A rate limiter for express using a token bucket",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
-  "types": "dist/types/slowItDown.d.ts",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "npm run clean && tsc && rollup -c && rm -rf compiled",
     "clean": "rm -rf dist compiled",

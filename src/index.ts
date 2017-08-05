@@ -57,6 +57,7 @@ export interface Configuration {
  * throttle({
  *   burst: 10,
  *   rate: 1,
+ *   ip: true,
  * })
  * 
  * @param {Configuration} options 

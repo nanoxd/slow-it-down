@@ -62,7 +62,7 @@ export interface Configuration {
  * @param {Configuration} options 
  * @returns {*} 
  */
-export const slowDown = (config: Configuration): any => {
+const slowDown = (config: Configuration): any => {
   if (!hasValues(config.ip, config.xff, config.user)) {
     throw new Error('(ip ^ username ^ xff)')
   }

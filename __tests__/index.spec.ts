@@ -1,6 +1,6 @@
-import * as after from 'after'
-import * as express from 'express'
-import * as supertest from 'supertest'
+import after from 'after'
+import express from 'express'
+import supertest from 'supertest'
 
 import slowDown from '../src'
 

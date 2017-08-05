@@ -1,7 +1,7 @@
 import { format } from 'util'
 import { Netmask } from 'netmask'
 import { xor } from './xor'
-import * as express from 'express'
+import express from 'express'
 
 import { TokenBucket } from './tokenBucket'
 import TokenTable, { TokenStorageEngine } from './tokenTable'

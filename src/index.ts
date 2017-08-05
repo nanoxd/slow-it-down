@@ -1,7 +1,7 @@
 import { format } from 'util'
 import { Netmask } from 'netmask'
 import { xor } from './xor'
-import * as express from 'express'
+import express from 'express'
 
 import { TokenBucket } from './tokenBucket'
 import TokenTable, { TokenStorageEngine } from './tokenTable'
@@ -62,7 +62,7 @@ export interface Configuration {
  * @param {Configuration} options 
  * @returns {*} 
  */
-export const slowDown = (config: Configuration): any => {
+const slowDown = (config: Configuration): any => {
   if (!hasValues(config.ip, config.xff, config.user)) {
     throw new Error('(ip ^ username ^ xff)')
   }

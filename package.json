@@ -2,12 +2,14 @@
   "name": "slow-it-down",
   "version": "0.0.2",
   "description": "A rate limiter for express using a token bucket",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/types/slowItDown.d.ts",
   "scripts": {
-    "build": "tsc",
-    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc && rollup -c && rm -rf compiled",
+    "clean": "rm -rf dist compiled",
     "precommit": "lint-staged",
+    "prepare": "npm run build",
     "test": "jest"
   },
   "keywords": [],
@@ -25,7 +27,14 @@
     "husky": "^0.14.3",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.2",
+    "lodash.camelcase": "^4.3.0",
     "prettier": "^1.5.3",
+    "rollup": "^0.45.2",
+    "rollup-plugin-commonjs": "^8.1.0",
+    "rollup-plugin-filesize": "^1.4.2",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
     "supertest": "^3.0.0",
     "ts-jest": "^20.0.7",
     "typescript": "^2.4.2"
@@ -48,7 +57,6 @@
     ]
   },
   "dependencies": {
-    "core-js": "^2.4.1",
     "lru-cache": "^4.1.1",
     "netmask": "^1.0.6"
   }

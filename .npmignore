@@ -1,2 +1,7 @@
 tsconfig.json
 src/
+compiled/
+__tests__/
+tags
+rollup.config.js
+wercker.yml

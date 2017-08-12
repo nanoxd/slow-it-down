@@ -37,7 +37,7 @@ export const handleNetmasks = (overrides: any): any => {
 }
 
 export interface Overrides {
-  [key: string]: Partial<BaseConfiguration>
+  [key: string]: BaseConfiguration
 }
 
 export interface BaseConfiguration {
@@ -46,6 +46,7 @@ export interface BaseConfiguration {
   ip?: boolean
   user?: boolean
   xff?: boolean
+  block?: any
 }
 
 export type Configuration = BaseConfiguration & {

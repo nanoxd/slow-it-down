@@ -48,7 +48,7 @@ export interface BaseConfiguration {
   xff?: boolean
 }
 
-export interface Configuration extends BaseConfiguration {
+export type Configuration = BaseConfiguration & {
   tokensTable?: TokenStorageEngine<TokenBucket>
   maxKeys?: number
   message?: string

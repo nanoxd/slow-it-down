@@ -1,5 +1,6 @@
 ## Current
 
+* Improve typings on Overrides
 ## v1.0.1
 
 * Update documentation

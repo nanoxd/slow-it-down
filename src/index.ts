@@ -6,7 +6,6 @@ import express from 'express'
 import { TokenBucket } from './tokenBucket'
 import TokenTable, { TokenStorageEngine } from './tokenTable'
 
-declare const Set: any
 export type Maybe<T> = T | undefined
 
 export const hasValues = (
@@ -37,16 +36,24 @@ export const handleNetmasks = (overrides: any): any => {
   return overrides
 }
 
-export interface Configuration {
+export interface Overrides {
+  [key: string]: BaseConfiguration
+}
+
+export interface BaseConfiguration {
   burst: number
   rate: number
   ip?: boolean
   user?: boolean
   xff?: boolean
-  overrides?: any
+  block?: any
+}
+
+export type Configuration = BaseConfiguration & {
   tokensTable?: TokenStorageEngine<TokenBucket>
   maxKeys?: number
   message?: string
+  overrides?: Overrides
 }
 
 /**
